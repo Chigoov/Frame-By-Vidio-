@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10120f">
+  <title>Jeda — Video ke Foto</title>
+  <style>
+    :root{color-scheme:dark;--bg:#10120f;--panel:#191c18;--line:#30352e;--text:#f1f2eb;--muted:#a0a79a;--green:#c5ef75;--warn:#f4c978;font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -20%,#293124 0,transparent 55%),var(--bg);color:var(--text);min-height:100vh}
+    main{width:min(980px,100%);margin:auto;padding:40px 22px 56px}.brand{display:flex;align-items:center;gap:12px}.mark{width:38px;height:38px;border-radius:13px;background:var(--green);color:#17200c;display:grid;place-items:center;font-weight:900;font-size:18px}.eyebrow{font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}h1{font-size:clamp(28px,5vw,43px);letter-spacing:-.04em;line-height:1.1;margin:25px 0 8px}.intro{color:var(--muted);margin:0 0 26px;max-width:650px}.card{background:color-mix(in srgb,var(--panel) 94%,transparent);border:1px solid var(--line);border-radius:20px;padding:20px;margin-top:16px}.upload{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:78px;border:1px dashed #535b4e;border-radius:15px;padding:15px 17px}.upload p{margin:0}.file-name{color:var(--muted);font-size:13px;margin-top:3px!important;overflow-wrap:anywhere}.button{border:0;border-radius:11px;padding:11px 15px;background:var(--green);color:#18200e;font-weight:750;cursor:pointer;white-space:nowrap}.button:hover{filter:brightness(1.06)}.button:disabled{opacity:.45;cursor:not-allowed}.secondary{background:#282d25;border:1px solid #41483d;color:var(--text)}.video-box{background:#090a08;aspect-ratio:16/9;display:grid;place-items:center;border-radius:14px;overflow:hidden;margin-bottom:17px;color:#777f73}.video-box video{max-width:100%;max-height:min(56vh,560px);width:100%;height:100%;object-fit:contain}.controls{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center}.time{font-variant-numeric:tabular-nums;color:var(--muted);font-size:13px;white-space:nowrap}input[type=range]{width:100%;accent-color:var(--green)}.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:15px}.section-title{font-size:16px;margin:0 0 13px}.batch{display:flex;flex-wrap:wrap;align-items:end;gap:12px}.field{display:grid;gap:5px;color:var(--muted);font-size:13px}.field input{width:115px;background:#10120f;border:1px solid #454b40;color:var(--text);border-radius:9px;padding:10px}.status{min-height:22px;color:var(--muted);font-size:13px;margin:13px 0 0}.status.error{color:#ff9b89}.privacy{font-size:13px;color:var(--muted);display:flex;gap:10px;align-items:flex-start}.privacy b{color:var(--green)}.hidden{display:none!important}
+    .settings{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:15px}.settings label{display:flex;align-items:center;gap:9px;color:var(--muted);font-size:13px}.settings select{background:#10120f;border:1px solid #454b40;color:var(--text);border-radius:9px;padding:9px 12px}.settings span{font-size:12px;color:var(--muted)}progress{width:100%;height:8px;accent-color:var(--green)}.video-box video{transform:scale(var(--preview-zoom,1))}
+    .account-form{display:grid;grid-template-columns:1fr 1fr;gap:10px}.account-form input,.account-actions input{min-width:0;background:#10120f;border:1px solid #454b40;color:var(--text);border-radius:9px;padding:11px}.account-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:11px}.account-note{font-size:12px;color:var(--muted);margin:10px 0 0}.check-row{display:flex;align-items:flex-start;gap:9px;margin-top:14px;color:var(--muted);font-size:13px}.check-row input{margin-top:4px;accent-color:var(--green)}
+    .cloud-job{display:flex;align-items:center;gap:9px;flex-wrap:wrap;border-top:1px solid var(--line);padding:12px 0}.cloud-job:first-child{margin-top:8px}.cloud-job strong{font-size:14px}.history-item{display:grid;grid-template-columns:auto 76px minmax(0,1fr);align-items:center;gap:12px;border-top:1px solid var(--line);padding:13px 0}.history-thumb{width:76px;height:76px;object-fit:cover;border-radius:10px;background:#090a08}.history-info{display:grid;min-width:0}.history-info strong,.history-info span{overflow-wrap:anywhere}.history-info span{font-size:12px;color:var(--muted)}.history-actions{grid-column:3;display:flex;gap:7px;flex-wrap:wrap}.history-actions .button{padding:8px 11px;font-size:12px}
+    @media(max-width:560px){main{padding:25px 15px 40px}.card{padding:15px}.upload{align-items:flex-start;flex-direction:column}.upload .button{width:100%}.controls{grid-template-columns:1fr auto}.controls input{grid-column:1/-1;grid-row:2}.time:last-child{justify-self:end}.batch .button{width:100%}.history-item{grid-template-columns:auto 60px minmax(0,1fr);gap:8px}.history-thumb{width:60px;height:60px}.history-actions{grid-column:2/-1}.history-actions .button{flex:1}}
+  </style>
+</head>
+<body>
+  <main>
+    <div class="brand"><div class="mark">J</div><div><strong>Jeda</strong><div class="eyebrow">Video ke foto · Offline</div></div></div>
+    <h1>Ambil momen dari video.</h1>
+    <p class="intro">Pilih video, geser ke momen yang kamu mau, lalu simpan foto dalam format dan ukuran yang kamu pilih. Pemrosesan awal berjalan di perangkat; unggah cloud memerlukan persetujuan terpisah.</p>
+    <section class="card">
+      <div class="upload"><div><p><strong>Pilih video dari perangkat</strong></p><p class="file-name" id="fileName">MP4, WebM, MOV, dan format yang didukung browser</p><p class="file-name" id="videoMeta"></p></div><button class="button" id="choose">Pilih video</button><input id="file" type="file" accept="video/*" class="hidden"></div>
+      <div id="editor" class="hidden" style="margin-top:18px">
+        <div class="video-box"><video id="video" controls playsinline preload="metadata"></video><span id="placeholder">Pratinjau video</span></div>
+        <div class="controls"><span id="current" class="time" title="Waktu target; decoder Android memilih frame terdekat">00:00.0</span><input id="seek" type="range" min="0" max="1000" value="0" aria-label="Geser waktu target video"><span id="duration" class="time">00:00.0</span></div>
+        <div class="settings"><label for="scale">Resolusi foto<select id="scale"><option value="1">Asli · 1×</option><option value="2">Interpolasi · 2×</option><option value="4">Interpolasi · 4×</option><option value="ai2" data-ai>AI detail · 2×</option><option value="ai4" data-ai>AI detail · 4×</option></select></label><label for="format">Format<select id="format"><option value="png">PNG · lossless</option><option value="jpeg">JPEG</option><option value="webp">WebP</option></select></label><label id="qualityControl" for="quality">Kualitas <input id="quality" type="range" min="50" max="100" value="92"><span id="qualityValue">92%</span></label><span id="scaleHint">Interpolasi memperbesar piksel, tetapi tidak menambah detail. AI detail tersedia di aplikasi Android dan berjalan offline.</span></div>
+        <div class="actions"><button id="back" class="button secondary" disabled>← 1/30 dtk</button><button id="forward" class="button secondary" disabled>1/30 dtk →</button><button id="zoom" class="button secondary" type="button" aria-label="Perbesar pratinjau video">Pratinjau 1×</button><button id="save" class="button" disabled>Simpan momen ini</button></div>
+      </div>
+      <p id="status" class="status" aria-live="polite">Belum ada video yang dipilih.</p>
+    </section>
+    <section id="batchCard" class="card hidden">
+      <h2 class="section-title">Ambil beberapa foto sekaligus</h2>
+      <div class="batch"><label class="field">Mulai (detik)<input id="start" type="number" min="0" step="0.1" value="0"></label><label class="field">Sampai (detik)<input id="end" type="number" min="0" step="0.1" value="5"></label><label class="field">Jarak foto (detik)<input id="interval" type="number" min="0.1" step="0.1" value="1"></label><button id="batch" class="button" disabled>Ambil foto berurutan</button></div>
+      <p id="batchEstimate" class="status" aria-live="polite">Format mengikuti pilihan di atas. Jarak minimum 0,1 detik.</p><progress id="batchProgress" class="hidden" max="1" value="0" aria-label="Progres pengambilan foto"></progress><p id="batchStatus" class="status" aria-live="polite"></p>
+    </section>
+    <section class="card hidden" id="historyCard">
+      <h2 class="section-title">Riwayat foto di perangkat</h2>
+      <div class="settings"><label for="historySearch">Cari<input id="historySearch" type="search" placeholder="Nama video atau foto" aria-label="Cari riwayat foto"></label><label><input id="favoritesOnly" type="checkbox"> Favorit saja</label><button class="button secondary" id="deleteSelected" type="button" disabled>Hapus riwayat terpilih</button></div>
+      <p id="historyWarning" class="status error hidden" aria-live="polite"></p><div id="historyList" aria-live="polite"></div><p class="account-note">Menghapus riwayat hanya menghapus catatan dari Jeda. Foto di galeri dan video sumber tidak ikut dihapus.</p>
+    </section>
+    <section class="card privacy"><span aria-hidden="true">●</span><span><b>Pemrosesan lokal adalah pilihan awal.</b> Video hanya diunggah jika kamu memilih pemrosesan cloud dan menyetujui unggahan untuk pekerjaan itu. Sinkronisasi metadata ekspor tetap terpisah.</span></section>
+    <section class="card" id="accountCard">
+      <h2 class="section-title">Akun Jeda Cloud <span style="color:var(--muted);font-weight:400">· opsional</span></h2>
+      <p class="status" id="cloudStatus" aria-live="polite">Memeriksa konfigurasi cloud…</p>
+      <div id="cloudControls" class="hidden">
+        <form id="accountForm" class="account-form">
+          <label class="hidden" for="accountEmail">Email</label><input id="accountEmail" type="email" autocomplete="email" aria-label="Email" placeholder="Email" required>
+          <label class="hidden" for="accountPassword">Kata sandi</label><input id="accountPassword" type="password" autocomplete="current-password" aria-label="Kata sandi" placeholder="Kata sandi" minlength="8" required>
+          <button class="button" id="signIn" type="submit">Masuk</button><button class="button secondary" id="signUp" type="button">Buat akun</button><button class="button secondary" id="forgotPassword" type="button">Lupa kata sandi?</button>
+        </form>
+        <form id="resetPasswordForm" class="account-actions hidden"><input id="newPassword" type="password" minlength="8" autocomplete="new-password" aria-label="Kata sandi baru" placeholder="Kata sandi baru" required><button class="button" type="submit">Simpan kata sandi baru</button></form>
+        <div class="account-actions hidden" id="signedInActions"><button class="button secondary" id="refreshAccount" type="button">Perbarui status akun</button><button class="button secondary" id="exportAccount" type="button">Unduh data akun</button><button class="button secondary" id="signOut" type="button">Keluar</button><button class="button secondary" id="deleteAccount" type="button">Hapus akun dan data cloud</button></div>
+        <div class="account-actions hidden" id="billingActions"><button class="button secondary" id="restorePurchases" type="button">Pulihkan pembelian</button></div>
+        <label class="check-row"><input id="syncMetadata" type="checkbox"><span>Sinkronkan metadata ekspor ke akun saya, seperti nama file, waktu video, dan ukuran foto. Video dan isi fotonya tetap di perangkat.</span></label>
+        <p class="account-note">Sesi Android disimpan terenkripsi dengan Android Keystore. Sinkronisasi metadata mati sampai kamu mengaktifkannya.</p>
+        <p class="account-note">Langganan berjalan melalui Google Play. Harga, periode, dan ketentuan pembatalan tampil di layar pembayaran Google Play.</p>
+      </div>
+    </section>
+    <section class="card hidden" id="cloudJobsCard">
+      <h2 class="section-title">Pemrosesan video di cloud</h2>
+      <p class="account-note" id="cloudPlanSummary" aria-live="polite">Memuat paket dan kuota cloud…</p>
+      <label class="check-row"><input id="cloudConsent" type="checkbox"><span>Saya menyetujui video yang dipilih diunggah ke penyimpanan privat Jeda untuk mengambil frame. Video dan hasil disimpan sesuai masa retensi paket, lalu dihapus otomatis.</span></label>
+      <div class="account-actions"><button class="button" id="startCloudJob" type="button" disabled>Unggah video dan mulai</button><button class="button secondary" id="refreshCloudJobs" type="button">Perbarui pekerjaan</button></div>
+      <p class="status" id="cloudJobStatus" aria-live="polite">Pilih video, atur rentang waktu, lalu setujui unggahan khusus pekerjaan ini.</p>
+      <div id="cloudJobList" aria-live="polite"></div>
+    </section>
+  </main>
+<script>
+  const $ = (id) => document.getElementById(id);
+  const fileInput = $('file'), video = $('video'), canvas = document.createElement('canvas');
+  const isAndroidApp = window.Capacitor?.getPlatform?.()==='android';
+  const videoFrames = isAndroidApp ? window.Capacitor.registerPlugin('VideoFrames') : null;
+  const gallery = isAndroidApp ? window.Capacitor.registerPlugin('GallerySaver') : null;
+  const historyKey='jeda.photo-history.v1';
+  const readHistory=()=>{try{const value=JSON.parse(localStorage.getItem(historyKey)||'[]');return Array.isArray(value)?value.filter(item=>item&&typeof item.id==='string'&&typeof item.fileName==='string'&&typeof item.galleryUri==='string'&&Number.isFinite(item.time)&&Number.isFinite(item.width)&&Number.isFinite(item.height)&&['png','jpeg','webp'].includes(item.format)):[];}catch{return[];}};
+  let historyItems=readHistory(),selectedHistory=new Set(),thumbnailCache=new Map(),thumbnailPending=new Set(),missingHistory=new Set(),batchRunning=false,batchCancelled=false,singleRunning=false;
+  // ponytail: at most 200 history rows, so a DOM scan is simpler than keeping element maps in sync.
+  function historyImages(id){return [...document.querySelectorAll('.history-thumb')].filter(image=>image.dataset.historyId===id);}
+  function showHistoryThumbnail(id,dataUrl){thumbnailCache.set(id,dataUrl);historyImages(id).forEach(image=>image.src=dataUrl);}
+  function markHistoryMissing(item){
+    missingHistory.add(item.id);thumbnailCache.delete(item.id);
+    historyImages(item.id).forEach(current=>{current.removeAttribute('src');current.alt='Foto galeri tidak dapat dibaca';const row=current.closest('.history-item'),info=row?.querySelector('.history-info span');if(info&&!info.textContent.includes('Foto galeri tidak dapat dibaca'))info.textContent+=' · Foto galeri tidak dapat dibaca';const share=row?.querySelector('[data-action="share"]');if(share)share.disabled=true;});
+  }
+  const thumbnailObserver=isAndroidApp&&'IntersectionObserver'in window?new IntersectionObserver(entries=>entries.forEach(entry=>{
+    if(!entry.isIntersecting)return;const image=entry.target,id=image.dataset.historyId,item=historyItems.find(row=>row.id===id);thumbnailObserver.unobserve(image);
+    if(!item||thumbnailCache.has(id)||thumbnailPending.has(id))return;thumbnailPending.add(id);
+    gallery.getThumbnail({uri:item.galleryUri}).then(result=>showHistoryThumbnail(id,result.dataUrl)).catch(()=>markHistoryMissing(item)).finally(()=>thumbnailPending.delete(id));
+  }),{rootMargin:'120px'}):null;
+  if(!isAndroidApp)document.querySelectorAll('[data-ai]').forEach(option=>option.remove());
+  let videoUrl = '', nativeVideo = null, nativeCurrentTime = 0, selectedDuration = 0;
+  const stamp = (seconds) => { const m=Math.floor(seconds/60), s=seconds%60; return `${String(m).padStart(2,'0')}:${s.toFixed(1).padStart(4,'0')}`; };
+  const sizeLabel=bytes=>bytes>=0?`${new Intl.NumberFormat('id-ID',{maximumFractionDigits:1}).format(bytes/1048576)} MB`:'ukuran tidak tersedia';
+  const setStatus = (message, error=false) => { $('status').textContent=message; $('status').classList.toggle('error',error); };
+  const fileOptions=()=>({format:$('format').value,quality:Number($('quality').value)});
+  const extension=format=>format==='jpeg'?'jpg':format;
+  const mimeType=format=>format==='jpeg'?'image/jpeg':`image/${format}`;
+  const saveHistory=()=>{try{localStorage.setItem(historyKey,JSON.stringify(historyItems.slice(0,200)));$('historyWarning').classList.add('hidden');}catch{$('historyWarning').textContent='Riwayat tidak dapat disimpan. Foto tetap ada di galeri, tetapi catatan Jeda mungkin hilang saat aplikasi ditutup.';$('historyWarning').classList.remove('hidden');}};
+  function rememberExport(image,saved,fileName,detail,refresh=true,source=nativeVideo){
+    if(!isAndroidApp||!saved?.uri)return;
+    historyItems.unshift({id:crypto.randomUUID(),fileName,sourceName:source?.fileName||'video',sourceUri:source?.uri,time:detail.time,width:image.width,height:image.height,format:detail.format,scale:detail.scale,ai:detail.ai,quality:detail.quality,bytes:saved.bytes||image.bytes,createdAt:Date.now(),galleryUri:saved.uri,favorite:false});
+    historyItems=historyItems.slice(0,200);selectedHistory=new Set([...selectedHistory].filter(id=>historyItems.some(item=>item.id===id)));saveHistory();if(refresh)renderHistory();
+  }
+  function renderHistory(){
+    if(!isAndroidApp)return;
+    $('historyCard').classList.remove('hidden');
+    const list=$('historyList');list.replaceChildren();
+    const query=$('historySearch').value.trim().toLocaleLowerCase('id-ID'),favoritesOnly=$('favoritesOnly').checked;
+    const visible=historyItems.filter(item=>(!favoritesOnly||item.favorite)&&(!query||`${item.fileName} ${item.sourceName}`.toLocaleLowerCase('id-ID').includes(query)));
+    $('deleteSelected').disabled=selectedHistory.size===0;
+    if(!visible.length){const empty=document.createElement('p');empty.className='status';empty.textContent=historyItems.length?'Tidak ada foto yang cocok dengan pencarian.':'Foto yang disimpan dari aplikasi akan muncul di sini.';list.append(empty);return;}
+    for(const item of visible){
+      const row=document.createElement('article');row.className='history-item';
+      const check=document.createElement('input');check.type='checkbox';check.checked=selectedHistory.has(item.id);check.setAttribute('aria-label',`Pilih ${item.fileName}`);check.onchange=()=>{check.checked?selectedHistory.add(item.id):selectedHistory.delete(item.id);$('deleteSelected').disabled=selectedHistory.size===0;};
+      const image=document.createElement('img');image.width=76;image.height=76;image.alt=`Pratinjau ${item.fileName}`;image.loading='lazy';image.className='history-thumb';image.dataset.historyId=item.id;if(thumbnailCache.has(item.id))image.src=thumbnailCache.get(item.id);
+      if(!thumbnailCache.has(item.id)&&!missingHistory.has(item.id)){if(thumbnailObserver)thumbnailObserver.observe(image);else{thumbnailPending.add(item.id);gallery.getThumbnail({uri:item.galleryUri}).then(result=>showHistoryThumbnail(item.id,result.dataUrl)).catch(()=>markHistoryMissing(item)).finally(()=>thumbnailPending.delete(item.id));}}
+      const info=document.createElement('div');info.className='history-info';
+      const title=document.createElement('strong');title.textContent=item.fileName;
+      const subtitle=document.createElement('span');subtitle.textContent=`${item.sourceName||'video'} · target ${stamp(item.time)} · ${item.width} × ${item.height} · ${item.format.toUpperCase()} · ${new Date(item.createdAt).toLocaleString('id-ID')}${missingHistory.has(item.id)?' · Foto galeri tidak dapat dibaca':''}`;
+      info.append(title,subtitle);
+      const actions=document.createElement('div');actions.className='history-actions';
+      const favorite=document.createElement('button');favorite.type='button';favorite.className='button secondary';favorite.textContent=item.favorite?'★ Favorit':'☆ Favorit';favorite.onclick=()=>{item.favorite=!item.favorite;saveHistory();renderHistory();};
+      const share=document.createElement('button');share.type='button';share.className='button secondary';share.textContent='Bagikan';share.dataset.action='share';share.disabled=missingHistory.has(item.id);share.onclick=()=>gallery.shareImage({uri:item.galleryUri,mimeType:mimeType(item.format)}).catch(error=>{if(error.message?.includes('tidak tersedia'))markHistoryMissing(item);setStatus(error.message||'Foto tidak dapat dibagikan.',true);});
+      const reexport=document.createElement('button');reexport.type='button';reexport.className='button secondary';reexport.textContent='Ekspor ulang';reexport.disabled=!item.sourceUri;reexport.title=item.sourceUri?'':'Video sumber tidak tersimpan di riwayat ini';reexport.onclick=()=>reexportHistoryItem(item);
+      actions.append(favorite,share,reexport);row.append(check,image,info,actions);list.append(row);
+    }
+  }
+  async function reexportHistoryItem(item){
+    if(batchRunning||singleRunning)return;
+    const saveWasDisabled=$('save').disabled,batchWasDisabled=$('batch').disabled;
+    singleRunning=true;$('choose').disabled=$('save').disabled=$('batch').disabled=true;
+    try{
+      if(!item.sourceUri)throw new Error('Video sumber tidak tersedia dalam riwayat. Pilih ulang video untuk mengekspor foto.');
+      const image=await outputImage(item.time,{scale:item.scale,ai:item.ai},{format:item.format,quality:item.quality},item.sourceUri);
+      const name=`${item.fileName.replace(/\.[^.]+$/,'')}-ulang.${extension(item.format)}`,saved=await download(image,name);
+      rememberExport(image,saved,name,{time:item.time,format:item.format,scale:item.scale,ai:item.ai,quality:item.quality},true,{uri:item.sourceUri,fileName:item.sourceName});
+      setStatus(saved?`Foto diekspor ulang · ${image.width} × ${image.height}.`:'Foto siap diunduh.');
+    }catch(error){setStatus(error.message||'Foto tidak dapat diekspor ulang. Video sumber mungkin sudah dipindahkan.',true);}
+    finally{singleRunning=false;$('choose').disabled=false;$('save').disabled=saveWasDisabled;$('batch').disabled=batchWasDisabled;updateBatchEstimate();}
+  }
+  $('historySearch').oninput=renderHistory;$('favoritesOnly').onchange=renderHistory;
+  $('deleteSelected').onclick=()=>{if(!selectedHistory.size)return;historyItems=historyItems.filter(item=>!selectedHistory.has(item.id));selectedHistory.clear();saveHistory();renderHistory();};
+  renderHistory();
+  document.addEventListener('visibilitychange',()=>{if(isAndroidApp&&!document.hidden){thumbnailCache.clear();missingHistory.clear();renderHistory();}});
+  function showVideo(file, nativeInfo=null){
+    if(batchRunning||singleRunning)return;
+    nativeVideo=nativeInfo;nativeCurrentTime=0;selectedDuration=nativeInfo?nativeInfo.durationMs/1000:0;
+    const fileName=nativeInfo?.fileName||file?.name||'video',sizeBytes=nativeInfo?.sizeBytes??file?.size??-1,mimeType=nativeInfo?.mimeType||file?.type||'';
+    const details={file,nativeUri:nativeInfo?.uri||null,playableUrl:nativeInfo?window.Capacitor.convertFileSrc(nativeInfo.uri):null,fileName,sizeBytes,mimeType,
+      durationMs:nativeInfo?.durationMs||null,width:nativeInfo?.width||null,height:nativeInfo?.height||null};
+    window.jedaSelectedVideo=file||null;window.dispatchEvent(new CustomEvent('jeda:video-selected',{detail:details}));
+    if(videoUrl)URL.revokeObjectURL(videoUrl);
+    videoUrl=nativeInfo?details.playableUrl:URL.createObjectURL(file);video.src=videoUrl;$('fileName').textContent=fileName;
+    $('videoMeta').textContent=nativeInfo?`${stamp(selectedDuration)} · ${nativeInfo.width} × ${nativeInfo.height} · ${sizeLabel(sizeBytes)}`:'';
+    video.style.setProperty('--preview-zoom','1');$('zoom').textContent='Pratinjau 1×';
+    $('editor').classList.remove('hidden');$('batchCard').classList.add('hidden');$('placeholder').classList.add('hidden');
+    $('save').disabled=$('batch').disabled=$('back').disabled=$('forward').disabled=true;setStatus('Membuka video…');
+    if(nativeInfo){
+      $('seek').max=String(Math.round(selectedDuration*100));$('duration').textContent=stamp(selectedDuration);
+      $('end').value=Math.min(5,selectedDuration).toFixed(1);$('end').max=String(selectedDuration);
+      $('save').disabled=$('batch').disabled=$('back').disabled=$('forward').disabled=false;$('batchCard').classList.remove('hidden');
+      setStatus(`${nativeInfo.width} × ${nativeInfo.height} · decoder Android mengambil frame terdekat dari waktu target.`);updateSeek();updateBatchEstimate();
+      window.dispatchEvent(new CustomEvent('jeda:video-ready',{detail:details}));
+    }
+  }
+  $('choose').onclick=async()=>{
+    if(!isAndroidApp){fileInput.click();return;}
+    try{const selection=await videoFrames.pickVideo();if(selection?.cancelled)return;showVideo(null,selection);}
+    catch(error){setStatus(error.message||'Video tidak dapat dibuka.',true);}
+  };
+  fileInput.onchange=()=>{const file=fileInput.files?.[0];if(file)showVideo(file);};
+  video.onloadedmetadata=()=>{
+    if(nativeVideo){updateSeek();return;}
+    if(!Number.isFinite(video.duration)||!video.videoWidth){setStatus('Format video ini belum didukung browser. Coba MP4 atau WebM.',true);return;}
+    selectedDuration=video.duration;
+    $('seek').max=String(Math.round(video.duration*100)); $('duration').textContent=stamp(video.duration);
+    $('end').value=Math.min(5,video.duration).toFixed(1); $('end').max=String(video.duration);
+    $('save').disabled=$('batch').disabled=$('back').disabled=$('forward').disabled=false;
+    $('batchCard').classList.remove('hidden'); setStatus(`${video.videoWidth} × ${video.videoHeight} · video siap diproses.`); updateSeek();
+    $('videoMeta').textContent=`${stamp(video.duration)} · ${video.videoWidth} × ${video.videoHeight} · ${sizeLabel(window.jedaSelectedVideo.size)}`;updateBatchEstimate();
+    window.dispatchEvent(new CustomEvent('jeda:video-ready',{detail:{file:window.jedaSelectedVideo,fileName:window.jedaSelectedVideo.name,sizeBytes:window.jedaSelectedVideo.size,mimeType:window.jedaSelectedVideo.type,width:video.videoWidth,height:video.videoHeight,durationMs:Math.round(video.duration*1000)}}));
+  };
+  video.onerror=()=>{if(nativeVideo){setStatus('Pratinjau pemutar tidak tersedia. Decoder Android tetap dapat mengambil frame dari video ini.');return;}setStatus('Video tidak dapat dibuka. Format atau codec mungkin tidak didukung browser ini.',true);};
+  const currentTime=()=>nativeVideo?nativeCurrentTime:video.currentTime;
+  const updateSeek=()=>{if(nativeVideo&&!video.paused&&Number.isFinite(video.currentTime))nativeCurrentTime=video.currentTime;const time=currentTime();$('seek').value=String(Math.round(time*100));$('current').textContent=stamp(time);};
+  video.ontimeupdate=updateSeek;
+  video.onpause=()=>{if(nativeVideo&&Number.isFinite(video.currentTime))nativeCurrentTime=video.currentTime;updateSeek();};
+  $('seek').oninput=()=>{const time=Number($('seek').value)/100;if(nativeVideo){nativeCurrentTime=time;if(video.readyState>0)try{video.currentTime=time;}catch{}updateSeek();}else video.currentTime=time;};
+  async function seekTo(seconds){
+    const duration=nativeVideo?selectedDuration:video.duration,target=Math.max(0,Math.min(duration,seconds));
+    if(nativeVideo){nativeCurrentTime=target;if(video.readyState>0)try{video.currentTime=target;}catch{}updateSeek();return target;}
+    if(Math.abs(video.currentTime-target)>=0.005||video.seeking){
+      await new Promise((resolve,reject)=>{
+        let timer;
+        const cleanup=()=>{clearTimeout(timer);video.removeEventListener('seeked',done);video.removeEventListener('error',fail);};
+        const done=()=>{if(video.seeking)return;cleanup();resolve();};
+        const fail=()=>{cleanup();reject(new Error('Frame video tidak dapat dibaca.'));};
+        video.addEventListener('seeked',done);video.addEventListener('error',fail,{once:true});
+        timer=setTimeout(()=>{cleanup();reject(new Error('Proses mencari frame terlalu lama. Coba lagi.'));},5000);
+        if(Math.abs(video.currentTime-target)>=0.005)video.currentTime=target;
+        else if(!video.seeking)done();
+      });
+    }
+    await waitForPresentedFrame();
+    return target;
+  }
+  async function waitForPresentedFrame(){
+    if(video.readyState<2)await new Promise((resolve,reject)=>{
+      const timer=setTimeout(()=>{cleanup();reject(new Error('Frame belum siap dibaca. Coba lagi.'));},5000);
+      const cleanup=()=>{clearTimeout(timer);video.removeEventListener('loadeddata',ready);video.removeEventListener('error',failed);};
+      const ready=()=>{cleanup();resolve();},failed=()=>{cleanup();reject(new Error('Frame video tidak dapat dibaca.'));};
+      video.addEventListener('loadeddata',ready,{once:true});video.addEventListener('error',failed,{once:true});
+    });
+    if(video.requestVideoFrameCallback){
+      await Promise.race([new Promise(resolve=>video.requestVideoFrameCallback(resolve)),new Promise(resolve=>setTimeout(resolve,1000))]);
+    }else await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+  }
+  async function imageBlob(scale=1,format='png',quality=92){
+    const width=video.videoWidth*scale,height=video.videoHeight*scale;
+    if(width>8192||height>8192||width*height>40000000)throw new Error('Ukuran upscale ini terlalu besar untuk perangkat. Pilih 2× atau ukuran asli.');
+    canvas.width=width;canvas.height=height;
+    const ctx=canvas.getContext('2d');ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';ctx.drawImage(video,0,0,width,height);
+    const requestedMime=mimeType(format);
+    return new Promise((resolve,reject)=>canvas.toBlob(blob=>blob?resolve({blob,format:blob.type==='image/jpeg'?'jpeg':blob.type==='image/webp'?'webp':'png',mimeType:blob.type||'image/png',width,height,bytes:blob.size}):reject(new Error('Gagal membuat foto.')),requestedMime,quality/100));
+  }
+  const frameOptions=()=>{const value=$('scale').value,match=value.match(/^(?:ai)?(1|2|4)$/);return{scale:Number(match?.[1]||1),ai:value.startsWith('ai')};};
+  const asDataUrl=blob=>new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=()=>reject(new Error('Foto gagal disiapkan untuk AI upscale.'));reader.readAsDataURL(blob);});
+  async function outputBlob(options,files){if(!options.ai)return imageBlob(options.scale,files.format,files.quality);if(!isAndroidApp)throw new Error('AI detail hanya tersedia di aplikasi Android.');const source=await imageBlob(1,'png',100),plugin=window.Capacitor.registerPlugin('VdsrUpscaler');setStatus(`AI detail sedang memproses ${video.videoWidth*options.scale} × ${video.videoHeight*options.scale} piksel di perangkat…`);const result=await plugin.upscaleImage({dataUrl:await asDataUrl(source.blob),scale:options.scale,format:files.format,quality:files.quality});return{sourceUri:result.uri,width:result.width,height:result.height,bytes:result.sizeBytes,format:files.format,mimeType:result.mimeType};}
+  async function outputImage(time,options=frameOptions(),files=fileOptions(),sourceUri=nativeVideo?.uri){
+    if(!isAndroidApp)return outputBlob(options,files);
+    const frame=await videoFrames.extractFrame({uri:sourceUri,timeMs:Math.round(time*1000),scale:options.ai?1:options.scale,format:files.format,quality:files.quality});
+    if(!options.ai)return{sourceUri:frame.uri,width:frame.width,height:frame.height,bytes:frame.sizeBytes,targetTimeMs:frame.targetTimeMs,format:frame.format,mimeType:frame.mimeType};
+    try{
+      setStatus(`AI detail sedang memproses ${frame.width*options.scale} × ${frame.height*options.scale} piksel di perangkat…`);
+      const result=await window.Capacitor.registerPlugin('VdsrUpscaler').upscaleImage({sourceUri:frame.uri,scale:options.scale,format:files.format,quality:files.quality});
+      return{sourceUri:result.uri,width:result.width,height:result.height,bytes:result.sizeBytes,targetTimeMs:frame.targetTimeMs,format:result.format,mimeType:result.mimeType};
+    }finally{await videoFrames.cleanupTemp({uri:frame.uri}).catch(()=>{});}
+  }
+  $('format').onchange=()=>{$('qualityControl').classList.toggle('hidden',$('format').value==='png');$('save').textContent=`Simpan momen · ${$('format').value.toUpperCase()}`;updateBatchEstimate();};
+  $('format').onchange();
+  $('quality').oninput=()=>{$('qualityValue').textContent=`${$('quality').value}%`;};
+  $('scale').onchange=()=>{$('scaleHint').textContent=$('scale').value.startsWith('ai')?'VDSR AI menajamkan luminans foto setelah diperbesar. Hasil bergantung pada video sumber dan batas memori ponsel.':'Interpolasi memperbesar piksel, tetapi tidak menambah detail. AI detail tersedia di aplikasi Android dan berjalan offline.';updateBatchEstimate();};
+  function batchPlan(){
+    if(['start','end','interval'].some(id=>$(id).value.trim()===''))return{error:'Isi waktu mulai, akhir, dan jarak foto.'};
+    const start=Number($('start').value),end=Number($('end').value),interval=Number($('interval').value);
+    if(!Number.isFinite(start)||!Number.isFinite(end)||!Number.isFinite(interval)||start<0||end<start||end>selectedDuration||interval<0.1)return{error:'Periksa rentang waktu dan jarak foto. Nilai harus berada dalam durasi video.'};
+    const count=Math.floor((end-start)/interval+1e-9)+1;
+    return count>500?{error:`Rentang ini menghasilkan ${count} foto. Maksimal 500 foto sekali proses.`}:{start,end,interval,count};
+  }
+  function updateBatchEstimate(){
+    if(batchRunning||!selectedDuration)return;
+    const plan=batchPlan(),estimate=$('batchEstimate');
+    if(plan.error){estimate.textContent=plan.error;estimate.classList.add('error');$('batch').disabled=true;return;}
+    const options=frameOptions(),width=(nativeVideo?.width||video.videoWidth)*options.scale,height=(nativeVideo?.height||video.videoHeight)*options.scale,pixels=width*height;
+    const unsafe=width>8192||height>8192||pixels>(options.ai?10000000:40000000);
+    const bytesPerPixel=$('format').value==='png'?[0.5,4]:[0.1,2];
+    estimate.textContent=unsafe?`Hasil ${width} × ${height} melebihi batas memori aman. Pilih resolusi lebih kecil.`:`${plan.count} foto · ${width} × ${height} · perkiraan ukuran total ${sizeLabel(pixels*bytesPerPixel[0]*plan.count)}–${sizeLabel(pixels*bytesPerPixel[1]*plan.count)}. Ukuran berkas bergantung isi video.`;
+    estimate.classList.toggle('error',unsafe);$('batch').disabled=unsafe;
+  }
+  ['start','end','interval'].forEach(id=>$(id).addEventListener('input',updateBatchEstimate));
+  $('zoom').onclick=()=>{const next=Number(video.style.getPropertyValue('--preview-zoom')||1)%3+1;video.style.setProperty('--preview-zoom',String(next));$('zoom').textContent=`Pratinjau ${next}×`;};
+  async function download(blob,name){
+    if(window.Capacitor?.getPlatform?.()==='android'){
+      if(blob?.sourceUri){try{return await gallery.saveImage({sourceUri:blob.sourceUri,filename:name,mimeType:blob.mimeType||mimeType(blob.format||'png')});}finally{await videoFrames.cleanupTemp({uri:blob.sourceUri}).catch(()=>{});}}
+      const dataUrl=await new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=()=>reject(new Error('Foto gagal disiapkan untuk galeri.'));reader.readAsDataURL(blob.blob||blob);});
+      return await gallery.saveImage({dataUrl,filename:name,mimeType:blob.mimeType||mimeType(blob.format||'png')});
+    }
+    const a=document.createElement('a');a.href=URL.createObjectURL(blob.blob||blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),15000);return null;
+  }
+  const sourceBaseName=()=>((nativeVideo?.fileName||window.jedaSelectedVideo?.name||'video').replace(/\.[^.]+$/,'').replace(/[^A-Za-z0-9_-]+/g,'-').slice(0,60)||'video');
+  function outputName(time,scale,ai,format,index){return`jeda-${sourceBaseName()}-${index?`${String(index).padStart(3,'0')}-`:''}target-${time.toFixed(2)}s-${ai?'ai-':''}${scale}x.${extension(format)}`;}
+  $('save').onclick=async()=>{
+    if(batchRunning||singleRunning)return;
+    singleRunning=true;$('save').disabled=$('batch').disabled=$('choose').disabled=true;
+    try{video.pause();const time=await seekTo(currentTime()),options=frameOptions(),files=fileOptions(),image=await outputImage(time,options,files),name=outputName(time,options.scale,options.ai,image.format),saved=await download(image,name),detail={time,width:image.width,height:image.height,format:image.format,scale:options.scale,ai:options.ai,quality:files.quality,bytes:image.bytes};rememberExport(image,saved,name,detail);document.dispatchEvent(new CustomEvent('jeda:exported',{detail:{fileName:name,...detail}}));setStatus(saved?`Foto dari sekitar ${stamp(time)} masuk ke album Jeda · ${image.width} × ${image.height} ${image.format.toUpperCase()}${options.ai?' · VDSR AI':''}.`:`Foto dari sekitar ${stamp(time)} siap diunduh · ${image.width} × ${image.height} ${image.format.toUpperCase()}${options.ai?' · VDSR AI':''}.`);}
+    catch(e){setStatus(e.message,true);}finally{singleRunning=false;$('save').disabled=$('choose').disabled=false;updateBatchEstimate();}
+  };
+  $('back').onclick=async()=>{try{video.pause();await seekTo(currentTime()-1/30);updateSeek();}catch(e){setStatus(e.message,true);}};
+  $('forward').onclick=async()=>{try{video.pause();await seekTo(currentTime()+1/30);updateSeek();}catch(e){setStatus(e.message,true);}};
+  $('batch').onclick=async()=>{
+    const button=$('batch');
+    if(batchRunning){batchCancelled=true;button.disabled=true;button.textContent='Membatalkan…';$('batchStatus').textContent='Menyelesaikan frame yang sedang diproses…';return;}
+    if(singleRunning)return;
+    const plan=batchPlan();if(plan.error){setStatus(plan.error,true);return;}
+    const {start,interval,count}=plan;
+    batchRunning=true;batchCancelled=false;button.textContent='Batalkan proses';$('save').disabled=$('choose').disabled=true;
+    ['start','end','interval','scale','format','quality'].forEach(id=>$(id).disabled=true);
+    $('batchProgress').classList.remove('hidden');$('batchProgress').value=0;
+    const exports=[];let failed=0,attempted=0;
+    try{
+      video.pause();const options=frameOptions(),files=fileOptions();
+      for(let i=0;i<count;i++){
+        if(batchCancelled)break;
+        const time=start+i*interval;attempted=i+1;await seekTo(time);if(batchCancelled)break;$('batchStatus').textContent=`Memproses foto ${i+1} dari ${count}…`;
+        const image=await outputImage(time,options,files);
+        if(batchCancelled){if(image.sourceUri)await videoFrames.cleanupTemp({uri:image.sourceUri}).catch(()=>{});break;}
+        const name=outputName(time,options.scale,options.ai,image.format,i+1),saved=await download(image,name),detail={time,width:image.width,height:image.height,format:image.format,scale:options.scale,ai:options.ai,quality:files.quality,bytes:image.bytes};
+        rememberExport(image,saved,name,detail,false);exports.push({fileName:name,...detail});$('batchProgress').value=(i+1)/count;
+      }
+      setStatus(batchCancelled?`Pengambilan dihentikan. ${exports.length} foto yang sudah tersimpan tetap aman.`:isAndroidApp?`${exports.length} foto tersimpan di album Jeda · ${files.format.toUpperCase()}${options.ai?' · VDSR AI':''}.`:`${exports.length} foto ${files.format.toUpperCase()} siap diunduh.`);
+    }
+    catch(e){failed++;setStatus(e.message||'Pengambilan frame gagal.',true);}
+    finally{renderHistory();if(exports.length)document.dispatchEvent(new CustomEvent('jeda:exported',{detail:exports}));$('batchProgress').value=attempted/count;$('batchStatus').textContent=`${exports.length} berhasil · ${failed} gagal · ${attempted} dari ${count} dicoba${batchCancelled?' · dibatalkan':''}.`;batchRunning=false;batchCancelled=false;button.textContent='Ambil foto berurutan';$('save').disabled=$('choose').disabled=false;['start','end','interval','scale','format','quality'].forEach(id=>$(id).disabled=false);updateBatchEstimate();}
+  };
+
+</script>
+<script type="module" src="/src/cloud.js"></script>
+</body>
+</html>

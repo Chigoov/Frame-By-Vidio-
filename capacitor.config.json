@@ -1,0 +1,8 @@
+{
+  "appId": "com.jedastudio.app",
+  "appName": "Jeda",
+  "webDir": "dist",
+  "android": {
+    "allowMixedContent": false
+  }
+}

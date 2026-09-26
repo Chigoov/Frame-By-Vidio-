@@ -1,0 +1,22 @@
+{
+  "name": "jeda-android",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "test:db": "node tests/security.test.mjs",
+    "android:debug": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/build-android.ps1"
+  },
+  "dependencies": {
+    "@capacitor/app": "^8.0.0",
+    "@capacitor/android": "^8.5.0",
+    "@capacitor/core": "^8.5.0",
+    "@supabase/supabase-js": "^2.58.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.5.0",
+    "@electric-sql/pglite": "^0.5.8",
+    "vite": "^7.1.7"
+  }
+}

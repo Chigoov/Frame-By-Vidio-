@@ -1,0 +1,27 @@
+project_id = "jeda"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[db]
+port = 54322
+major_version = 17
+
+[functions.account-export]
+verify_jwt = true
+
+[functions.account-delete]
+verify_jwt = true
+
+[functions.verify-play-purchase]
+verify_jwt = true
+
+[functions.cloud-jobs]
+verify_jwt = true
+
+[functions.play-rtdn]
+verify_jwt = false
