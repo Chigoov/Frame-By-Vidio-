@@ -62,6 +62,32 @@ public class GallerySaverPlugin extends Plugin {
     }
 
     @PluginMethod
+    public void viewImage(PluginCall call) {
+        String value = call.getString("uri");
+        String mimeType = safeMimeType(call.getString("mimeType"));
+        Uri uri = value == null ? null : Uri.parse(value);
+        if (uri == null || !"content".equals(uri.getScheme())) {
+            call.reject("Foto galeri tidak dapat dibuka.");
+            return;
+        }
+        try (InputStream source = getContext().getContentResolver().openInputStream(uri)) {
+            if (source == null) throw new IllegalArgumentException("Foto tidak ditemukan.");
+        } catch (Exception error) {
+            call.reject("Foto galeri tidak tersedia untuk dibuka.", error);
+            return;
+        }
+        getActivity().runOnUiThread(() -> {
+            try {
+                Intent view = new Intent(Intent.ACTION_VIEW);
+                view.setDataAndType(uri, mimeType);
+                view.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                getActivity().startActivity(Intent.createChooser(view, "Buka foto"));
+                call.resolve();
+            } catch (Exception error) { call.reject("Aplikasi untuk membuka foto tidak ditemukan.", error); }
+        });
+    }
+
+    @PluginMethod
     public void getThumbnail(PluginCall call) {
         String value = call.getString("uri");
         Uri uri = value == null ? null : Uri.parse(value);

@@ -1,11 +1,13 @@
 {
   "name": "jeda-android",
-  "version": "0.1.0",
+  "version": "1.5.0",
   "private": true,
   "type": "module",
   "scripts": {
     "build": "vite build",
-    "test:db": "node tests/security.test.mjs",
+    "test:ui": "node tests/ui-flow.test.mjs",
+    "test:db": "node --max-old-space-size=4096 tests/security.test.mjs",
+    "test": "node tests/ui-flow.test.mjs && node --max-old-space-size=4096 tests/security.test.mjs",
     "android:debug": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/build-android.ps1"
   },
   "dependencies": {

@@ -20,7 +20,7 @@ syncToggle.checked = false;
 
 const { VITE_SUPABASE_URL: url, VITE_SUPABASE_PUBLISHABLE_KEY: key } = import.meta.env;
 if (!url || !key) {
-  status.textContent = 'Cloud belum dikonfigurasi. Semua fitur pengambilan dan penyimpanan lokal tetap tersedia.';
+  status.textContent = 'Cloud belum dikonfigurasi. Semua fitur pengambilan dan penyimpanan foto berjalan 100% lokal offline di perangkat.';
 } else {
   const secureSession = registerPlugin('SecureSession');
   const billing = registerPlugin('JedaBilling');

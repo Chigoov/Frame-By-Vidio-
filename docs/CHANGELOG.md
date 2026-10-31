@@ -1,5 +1,18 @@
 # Catatan Perubahan Jeda
 
+## 1.5.0
+
+- Penyelarasan identitas rilis: `versionName "1.5.0"` dan `versionCode 6` pada konfigurasi Android Gradle `build.gradle` dan `package.json`.
+- Integrasi logo resmi Jeda (simbol jeda/pause dalam bingkai foto dan siluet alam) menggantikan ikon huruf 'J' awal. Logo dibersihkan dari stray pixels dan dipusatkan secara presisi.
+- Ikon Android adaptive icon (`ic_launcher_foreground.png`) disesuaikan ke safe-zone OEM (60dp dari 108dp kanvas) dengan latar gelap `#10120F`, disertai ikon legacy square/round pada 5 densitas (`mdpi`, `hdpi`, `xhdpi`, `xxhdpi`, `xxxhdpi`) dan 11 varian splash screen.
+- Mode editor kompak otomatis (`.has-video`): menyembunyikan header hero saat video dimuat sehingga pratinjau, penggeser waktu, dan tombol simpan dapat terlihat bersamaan pada layar ponsel (mis. 390 × 844) tanpa harus menggulir berlebih.
+- Kotak pemilihan video bertransformasi menjadi bar informasi video yang ramping dengan nama file, durasi, resolusi, ukuran, dan tombol "Ganti video".
+- Area pratinjau video fleksibel (`object-fit: contain`) untuk video landscape (16:9) maupun portrait vertikal ponsel (9:16) tanpa distorsi/cropping.
+- Tombol aksi utama **"Simpan momen ini"** diposisikan dominan sebagai primary CTA dengan warna hijau aksen Jeda yang mencolok.
+- Pengambilan banyak foto (batch) dikelompokkan ke dalam accordion rapi agar tidak mendominasi alur simpan foto tunggal, lengkap dengan tombol "Posisi saat ini", estimasi ukuran total, dan pembatalan aman.
+- Pengujian otomatis ditingkatkan (`tests/ui-flow.test.mjs`) untuk mengevaluasi kode dan perilaku interaktif DOM aplikasi nyata (event dispatching, pergeseran waktu ~1/30s, perubahan pengaturan, alur simpan dan trigger plugin galeri).
+- Perbaikan bug handler galeri: perbaikan referensi variabel `id` yang tidak terdefinisi pada fallback antrean thumbnail riwayat.
+
 ## 1.4.0
 
 - Ikon dan layar pembuka memakai identitas Jeda.

@@ -22,6 +22,20 @@
 - SaaS bukan layanan aktif: belum ada Supabase project, migrasi terpasang, paket berbayar, server worker, domain, atau transaksi sandbox.
 - Rilis publik belum disiapkan: belum ada signing key rilis pemilik, AAB, kebijakan dan listing final Play, atau uji penerimaan pada ponsel.
 
+## Pemeriksaan pada 28 Oktober 2026 (Penyempurnaan UI, UX, Logo & Kesiapan Uji)
+
+- `npm run test:ui`: lulus; pengujian interaktif DOM & VM menguji alur aplikasi asli, termasuk pemuatan video, mode editor ringkas, ketelitian waktu seperseratus detik `00:00.00`, pergeseran tombol ~1/30 detik, interaksi pengaturan format/resolusi, tombol rentang batch posisi saat ini, pemanggilan aksi simpan, kartu konfirmasi visual, pemanggilan plugin galeri `viewImage` & `shareImage`, serta integritas seluruh berkas branding.
+- `npm run test:db`: lulus; pengujian PostgreSQL RLS via PGlite mencakup hak akses, kuota, pembatalan, dan hapus akun.
+- `npm test`: seluruh test suite otomatis (UI flow + DB RLS) lulus 100%.
+- `npm run build`: lulus (Vite v7.3.6 membuild aset web ke `dist/` dengan aset logo Jeda).
+- `npx cap sync android`: berhasil menyalin aset web terbaru dan konfigurasi plugin Android.
+- `gradlew.bat assembleDebug`: berhasil dikompilasi dengan OpenJDK 21 dan Android SDK 36.
+- APK debug baru: `artifacts/Jeda-Android-debug.apk`; 37.546.045 byte; SHA-256 `a207828420141f1df6b417d7e6e8c1767f45f3e8723798c048246201799ba87a`.
+- Identitas APK: `com.jedastudio.app`, versionCode 6, versionName 1.5.0, min SDK 24, target SDK 36 (terkonfirmasi via `aapt dump badging`).
+- Tanda tangan APK: Skema V2 terverifikasi via `apksigner`.
+- Logo & Branding baru: logo konsep resmi dibersihkan dari stray alpha pixels, dipusatkan presisi, dan diterapkan pada Web UI mark, ikon adaptive foreground safe-zone (60/108dp), ikon legacy round/square pada 5 densitas (`mdpi` hingga `xxxhdpi`), serta 11 varian splash screen latar gelap `#10120f`.
+- Tidak ada emulator atau perangkat fisik Android yang terhubung (`adb devices -l` kosong). Kompilasi native Java, intent galeri, dan aset grafis terverifikasi, namun interaksi hardware/decoder langsung di ponsel fisik belum diuji.
+
 ## Pemeriksaan pada 27 September 2026
 
 - `npm run test:db`: lulus; mencakup RLS, reservasi/idempotensi, kuota, pencocokan ukuran unggahan, antrean/penyelesaian, batal, hapus, dan permintaan hapus akun.
